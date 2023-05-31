@@ -8,5 +8,13 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karthikey-Sharma/React.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Karthikey-Sharma/React/issues"
+  },
+  "homepage": "https://github.com/Karthikey-Sharma/React#readme",
   "description": ""
 }
