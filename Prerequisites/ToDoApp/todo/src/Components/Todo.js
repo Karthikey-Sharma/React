@@ -56,6 +56,7 @@ export default class Todo extends Component {
                                                                                           <p>{taskObj.task}</p>
                                                                                           <button onClick={() => this.handleDelete(taskObj.id) }>Delete</button>
                                                                                 </li>
+                                                                                
                                                                       )
                                                             })
                                         }
