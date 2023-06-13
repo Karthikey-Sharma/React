@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { movies } from './getMovies'
 export default class Banner extends Component {
   render() {
-          let movie = movies.results[7];
+          let movie = movies.results[2];
     return (
           <>
           {         

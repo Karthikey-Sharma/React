@@ -90,8 +90,16 @@
   bottom : 2rem;
 }
 
+.movie-img{
+  height : 40vh;
+  width : 20vw;
+}
 
-
+.pagination{
+  display: flex;
+  justify-content: center;
+}
+/* upto  400 px */
 @media screen and (max-width: 400px) {
   .banner-card{
     height : 30vh;
@@ -106,6 +114,17 @@
   .banner-text{
     top : 17vh;
     left : 5vw;
+  }
+
+  .movie-card{
+    width : 40vw;
+    margin : 0.1rem;
+  }
+  .movie-button {
+    width:80%;
+  }
+  .movie-img{
+    width : 40vw;
   }
 }
 
