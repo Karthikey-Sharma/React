@@ -7,7 +7,7 @@ export default class List extends Component {
     this.state = {
       hover : "" , 
       parr : [1], // ab tak mein konsee page pe hu or what page result am i showing
-      currPage : 3, 
+      currPage : 1, 
       movies : []
     }
   }
@@ -25,6 +25,41 @@ export default class List extends Component {
     })
   }
 
+   changeMovies = async () => {
+   let ans =  await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=f5d6e9162514147762f2410576d4357a&language-en-US&page=${this.state.currPage}`);
+   console.log(ans.data);
+   this.setState({
+    movies : [...ans.data.results]
+   })
+
+  }
+
+  handleNext = () =>{
+    let tempArr = [];
+    for(let i = 1 ; i <= this.state.parr.length + 1 ; i++){
+      tempArr.push(i);
+    }
+    this.setState({
+      parr : [...tempArr] , 
+      currPage : this.state.currPage + 1
+    } , this.changeMovies) // set state is async so it will create problem so , set state has a parameter which is callback function which will only be performed when the setstate has been completed 
+                          // tbhi this.change movies function uske parameter mein rkha(will turn out to be callback function)
+    ;
+  }
+
+  handlePrevious = () => {
+    let tempArr = [];
+    if(this.state.parr.length != 1){
+      for(let i = 1 ; i <= this.state.parr.length - 1 ; i++){
+      tempArr.push(i);
+    }
+    this.setState({
+      parr : [...tempArr] , 
+      currPage : this.state.currPage - 1
+    } , this.changeMovies);
+    }
+    
+  }
 
   async componentDidMount(){
     console.log(this.state.currPage)
@@ -80,13 +115,13 @@ export default class List extends Component {
                                 <div className = "pagination">
                                       <nav aria-label="Page navigation example">
                                           <ul className="pagination">
-                                            <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+                                            <li className="page-item"><a className="page-link" href="#" onClick = {this.handlePrevious}>Previous</a></li>
                                             {
                                               this.state.parr.map((pageNum)=>(
                                                 <li className="page-item"><a className="page-link" href="#">{pageNum}</a></li>
                                               ))
                                             }
-                                            <li className="page-item"><a className="page-link" href="#">Next</a></li>
+                                            <li className="page-item"><a className="page-link" href="#" onClick = {this.handleNext}>Next</a></li>
                                           </ul>
                                       </nav>
                                     </div>
