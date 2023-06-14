@@ -48,17 +48,20 @@ export default class List extends Component {
   }
 
   handlePrevious = () => {
-    let tempArr = [];
-    if(this.state.parr.length != 1){
-      for(let i = 1 ; i <= this.state.parr.length - 1 ; i++){
-      tempArr.push(i);
-    }
-    this.setState({
-      parr : [...tempArr] , 
-      currPage : this.state.currPage - 1
-    } , this.changeMovies);
+    if(this.state.currPage != 1){
+      this.setState({
+        currPage: this.state.currPage - 1
+      } , this.changeMovies)
     }
     
+  }
+
+  handleClick = (pageNum) => {
+    if(pageNum != this.state.currPage){
+      this.setState({
+        currPage : pageNum
+      }, this.changeMovies)
+    }
   }
 
   async componentDidMount(){
@@ -118,7 +121,7 @@ export default class List extends Component {
                                             <li className="page-item"><a className="page-link" href="#" onClick = {this.handlePrevious}>Previous</a></li>
                                             {
                                               this.state.parr.map((pageNum)=>(
-                                                <li className="page-item"><a className="page-link" href="#">{pageNum}</a></li>
+                                                <li className="page-item"><a className="page-link" href="#" onClick = {()=>this.handleClick(pageNum)}>{pageNum}</a></li>
                                               ))
                                             }
                                             <li className="page-item"><a className="page-link" href="#" onClick = {this.handleNext}>Next</a></li>
