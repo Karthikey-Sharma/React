@@ -28,7 +28,7 @@ export default class List extends Component {
 
    changeMovies = async () => {
    let ans =  await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=f5d6e9162514147762f2410576d4357a&language-en-US&page=${this.state.currPage}`);
-   console.log(ans.data);
+   //console.log(ans.data);
    this.setState({
     movies : [...ans.data.results]
    })
@@ -74,7 +74,7 @@ export default class List extends Component {
       );
     }
     else localStorageMovies.push(movieObj);
-    console.log(localStorageMovies);
+    //console.log(localStorageMovies);
     
     localStorage.setItem("movies", JSON.stringify(localStorageMovies));
 
@@ -85,9 +85,9 @@ export default class List extends Component {
   }
 
   async componentDidMount(){
-    console.log(this.state.currPage)
+    //console.log(this.state.currPage)
    let ans =  await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=f5d6e9162514147762f2410576d4357a&language-en-US&page=${this.state.currPage}`);
-   console.log(ans.data);
+   //console.log(ans.data);
    this.setState({
     movies : [...ans.data.results]
    })
@@ -95,7 +95,8 @@ export default class List extends Component {
 
 
   render() { // jab bhi state set hogi render method call hoga
-     //let movie = movies.results;     
+     //let movie = movies.results; 
+     
     return (
       <>
           {this.state.movies.length==0 ? 
@@ -124,7 +125,9 @@ export default class List extends Component {
                                                   <div className="button-wrapper movie-button" style =  {{display :  "flex" , width:"100%" , justifyContent : "center" }}>
                                                         {
                                                           this.state.hover == movieObj.id && 
-                                                          <a  className="btn btn-primary" onClick = {()=>this.handleFavourites(movieObj)}>Add To Favourites</a> 
+                                                          <a  className="btn btn-primary" onClick = {()=>this.handleFavourites(movieObj)}>
+                                                            {this.state.favMov.includes(movieObj.id) ? "Remove From Favourites" : "Add to Favourites"}
+                                                          </a> 
                                                         }
                                                   </div>
                                                 </div>
