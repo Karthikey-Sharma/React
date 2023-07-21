@@ -1,30 +1,32 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <cmath>
 using namespace std;
 
-void solve(){
-    int n;
-    cin >> n;
-    vector<int> arr(4 * n);
-    for(int i = 0 ; i < arr.size() ; i++)
-        cin >> arr[i];
-    sort(arr.begin() , arr.end());
-    int prevArea = arr[0] * arr[arr.size() - 1];
-    for(int i = 0 ; i < n ; i++){
-        int left = 2 * i;
-        int right = 4 * n - 2 * i - 2;
-        if(arr[left] != arr[left + 1] || arr[right] != arr[right + 1] || prevArea != arr[left] * arr[right]){
-            cout << "NO" << endl;
-            return;
-        }
-    }
-    cout << "YES" << endl;
-    return;
+bool isPowerOfTwo(long long n) {
+    return (n & (n - 1)) == 0;
 }
 
-int main(){
+bool canConstructSnowflake(long long n) {
+    if (n < 4 || n % 2 == 0) {
+        return false;
+    }
+    if (isPowerOfTwo(n - 1)) {
+        return true;
+    }
+    return false;
+}
+
+int main() {
     int t;
     cin >> t;
-    while(t--)
-        solve();
+    while (t--) {
+        long long n;
+        cin >> n;
+        if (canConstructSnowflake(n)) {
+            cout << "YES\n";
+        } else {
+            cout << "NO\n";
+        }
+    }
     return 0;
 }

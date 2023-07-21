@@ -9,7 +9,8 @@ export default class List extends Component {
       parr : [1], // ab tak mein konsee page pe hu or what page result am i showing
       currPage : 1, 
       movies : [] , 
-      favMov : []  //this will store the id of the movies added to favourites
+      favMov : [] , //this will store the id of the movies added to favourites
+  
     }
   }
 
@@ -66,7 +67,7 @@ export default class List extends Component {
   }
 
   handleFavourites = (movieObj) => { 
-    let localStorageMovies = JSON.parse(localStorage.getItem("movies")) || [];
+    let localStorageMovies = JSON.parse(localStorage.getItem("movies") || '[]');
    
     if (this.state.favMov.includes(movieObj.id)) {
       localStorageMovies = localStorageMovies.filter(
